@@ -6,12 +6,10 @@ public class Firework : MonoBehaviour
     private Firing _firing = new();
 
     private int _attackValue = 1;
-    private CircleCollider2D _circleCollider = default;
 
     private void Start()
     {
         _firing.Init(transform);
-        _circleCollider = GetComponent<CircleCollider2D>();
     }
 
     public void ShowFirework(float radius)
@@ -24,20 +22,21 @@ public class Firework : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out EnemyController enemy))
         {
             enemy.gameObject.TryGetComponent(out LifeManager life);
+            var collider = GetComponent<CircleCollider2D>();
 
-            if (_circleCollider.radius <= 1)
+            if (collider.radius <= 1)
             {
                 _attackValue = 2;
             }
-            else if (_circleCollider.radius <= 2)
+            else if (collider.radius <= 2)
             {
                 _attackValue = 4;
             }
-            else if (_circleCollider.radius <= 3)
+            else if (collider.radius <= 3)
             {
                 _attackValue = 5;
             }
-            else if (_circleCollider.radius <= 4)
+            else if (collider.radius <= 4)
             {
                 _attackValue = 6;
             }
@@ -53,7 +52,7 @@ public class Firework : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, _circleCollider.radius);
+        Gizmos.DrawWireSphere(transform.position, GetComponent<CircleCollider2D>().radius);
     }
 #endif
 }
