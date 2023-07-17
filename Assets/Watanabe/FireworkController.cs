@@ -12,12 +12,14 @@ public class FireworkController : MonoBehaviour
     private GameObject _fireworkPrefab = default;
 
     private GameObject _firework = default;
+    private CircleCollider2D _circleCollider = default;
     private float _moveValue = 1f;
     private bool _isInflate = false;
 
     private void Start()
     {
         _firework = Instantiate(_fireworkPrefab, transform.position, Quaternion.identity);
+        _circleCollider = _firework.GetComponent<CircleCollider2D>();
     }
 
     private void Update()
@@ -26,6 +28,7 @@ public class FireworkController : MonoBehaviour
         {
             //計測開始
             Debug.Log("計測開始");
+            _circleCollider.enabled = false;
             _moveValue = 1f;
         }
         else if (Input.GetMouseButton(0))
@@ -45,6 +48,7 @@ public class FireworkController : MonoBehaviour
         {
             //爆発
             Debug.Log("Bomb!!");
+            _circleCollider.enabled = true;
             _isInflate = false;
             Explosion();
         }
