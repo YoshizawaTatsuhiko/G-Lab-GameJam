@@ -7,6 +7,8 @@ public class AudioPlayer : MonoBehaviour
 
     private AudioSource _seSource = default;
 
+    public AudioClip[] FireworkSE => _fireworkSE;
+
     private void Start()
     {
         _seSource = GetComponent<AudioSource>();
