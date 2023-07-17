@@ -28,10 +28,14 @@ public class Firing
         sequence
             .AppendCallback(() =>
             {
-                firework.GetComponent<SpriteRenderer>().enabled = false;
-                firework.SetActive(false);
+                firework.transform.localScale = Vector3.one * 0.1f;
             })
             .Append(_transform.DOMove(_startPos + _upOffset, 1f))
+            .Join(firework.transform.DOMove(_startPos + _upOffset, 1f))
+            .AppendCallback(() =>
+            {
+                firework.SetActive(false);
+            })
             .AppendCallback(() =>
             {
                 _audio.PlaySE(Random.Range(0, _audio.FireworkSE.Length));
@@ -40,8 +44,8 @@ public class Firing
             .AppendInterval(2f)
             .AppendCallback(() =>
             {
-                firework.GetComponent<SpriteRenderer>().enabled = true;
                 firework.SetActive(true);
+                firework.transform.localScale = Vector3.one;
                 firework.transform.position = _startPos;
 
                 _transform.position = _startPos;
