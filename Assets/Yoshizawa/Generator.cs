@@ -5,7 +5,7 @@ using UnityEngine;
 // 日本語対応
 public class Generator : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _items = null;
+    [SerializeField] private EnemyController[] _items = null;
     [SerializeField] private float _keepOutArea = 10f;
     [SerializeField] private float _generateArea = 5f;
     [SerializeField] private float _interval = 1f;
@@ -25,8 +25,12 @@ public class Generator : MonoBehaviour
             Vector2 vec = 
                 (Random.insideUnitCircle - Vector2.zero).normalized *
                  Random.Range(_keepOutArea, _keepOutArea + _generateArea);
+            vec.x = vec.x < 0 ? vec.x * -1 : vec.x;
+            vec.y = vec.y < 0 ? vec.y * -1 : vec.y;
+            Vector2 myPos = transform.position;
             int n = Random.Range(0, _items.Length);
-            Instantiate(_items[n], vec, Quaternion.identity, transform);
+            var enemy = Instantiate(_items[n], myPos + vec, Quaternion.identity, transform);
+            enemy.Target = transform.position;
             _timer = 0f;
         }
     }
