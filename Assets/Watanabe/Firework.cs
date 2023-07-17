@@ -22,11 +22,13 @@ public class Firework : MonoBehaviour
 
         var sequence = DOTween.Sequence();
         sequence
-            .Append(_renderer.transform.DOScale(Vector3.one * scale, 1.5f))
+            .Append(_renderer.transform.DOScale(Vector3.one * scale * 1.5f, 1.5f))
+            .Join(transform.DOScale(Vector3.one * scale, 1.5f))
             .AppendCallback(() =>
             {
                 _renderer.enabled = false;
                 _renderer.transform.localScale = Vector3.one;
+                transform.localScale = Vector3.one;
             })
             .AppendInterval(1f)
             .OnComplete(() =>
