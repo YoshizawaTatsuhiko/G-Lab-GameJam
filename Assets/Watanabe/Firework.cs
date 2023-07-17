@@ -29,14 +29,14 @@ public class Firework : MonoBehaviour
                 _renderer.enabled = false;
                 _renderer.transform.localScale = Vector3.one;
                 transform.localScale = Vector3.one;
+
+                _firing.Explode();
             })
             .AppendInterval(1f)
             .OnComplete(() =>
             {
                 _renderer.enabled = true;
             });
-
-        _firing.Explode();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
