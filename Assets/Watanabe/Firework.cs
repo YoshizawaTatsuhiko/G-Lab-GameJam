@@ -1,5 +1,4 @@
-﻿using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Firework : MonoBehaviour
 {
@@ -8,35 +7,14 @@ public class Firework : MonoBehaviour
     [SerializeField]
     private int _attackValue = 1;
 
-    private SpriteRenderer _renderer = default;
-
     private void Start()
     {
         _firing.Init(transform);
-        _renderer = GetComponent<SpriteRenderer>();
     }
 
-    public void ShowFirework(int scale)
+    public void ShowFirework()
     {
-        _renderer.transform.localScale = Vector3.zero;
-
-        var sequence = DOTween.Sequence();
-        sequence
-            .Append(_renderer.transform.DOScale(Vector3.one * scale * 1.5f, 1.5f))
-            .Join(transform.DOScale(Vector3.one * scale, 1.5f))
-            .AppendCallback(() =>
-            {
-                _renderer.enabled = false;
-                _renderer.transform.localScale = Vector3.one;
-                transform.localScale = Vector3.one;
-
-                _firing.Explode();
-            })
-            .AppendInterval(1f)
-            .OnComplete(() =>
-            {
-                _renderer.enabled = true;
-            });
+        _firing.Explode(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

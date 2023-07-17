@@ -20,21 +20,30 @@ public class Firing
         _audio = transform.GetComponent<AudioPlayer>();
     }
 
-    public void Explode()
+    public void Explode(GameObject firework)
     {
         GameObject go = default;
         var sequence = DOTween.Sequence();
 
         sequence
+            .AppendCallback(() =>
+            {
+                firework.GetComponent<SpriteRenderer>().enabled = false;
+                firework.SetActive(false);
+            })
             .Append(_transform.DOMove(_startPos + _upOffset, 1f))
             .AppendCallback(() =>
             {
-                go = Object.Instantiate(_explodePrefab, _transform.position, Quaternion.identity);
                 _audio.PlaySE(Random.Range(0, _audio.FireworkSE.Length));
+                go = Object.Instantiate(_explodePrefab, _transform.position, Quaternion.identity);
             })
             .AppendInterval(2f)
             .AppendCallback(() =>
             {
+                firework.GetComponent<SpriteRenderer>().enabled = true;
+                firework.SetActive(true);
+                firework.transform.position = _startPos;
+
                 _transform.position = _startPos;
                 Object.Destroy(go);
             });
