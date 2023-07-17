@@ -23,6 +23,7 @@ public class Firework : MonoBehaviour
             .DOScale(Vector3.one * scale, 1.5f)
             .OnComplete(() =>
             {
+                _renderer.enabled = false;
                 _renderer.transform.localScale = Vector3.one;
             });
 

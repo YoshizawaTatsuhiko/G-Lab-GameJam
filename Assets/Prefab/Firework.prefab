@@ -103,8 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firing:
     _explodePrefab: {fileID: 100002, guid: f7efb0d9df2264096af57128df85dddb, type: 3}
-    _upOffset: {x: 0, y: 1, z: 0}
-  _lifeManager: {fileID: 0}
+    _upOffset: {x: 0, y: 4, z: 0}
   _attackValue: 1
 --- !u!114 &7277674202535230623
 MonoBehaviour:

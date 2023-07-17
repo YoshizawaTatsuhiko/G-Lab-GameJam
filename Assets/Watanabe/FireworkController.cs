@@ -9,10 +9,16 @@ public class FireworkController : MonoBehaviour
     [SerializeField]
     private float _maxScaleValue = 5f;
     [SerializeField]
-    private Firework _firework = default;
+    private GameObject _fireworkPrefab = default;
 
+    private GameObject _firework = default;
     private float _moveValue = 1f;
     private bool _isInflate = false;
+
+    private void Start()
+    {
+        _firework = Instantiate(_fireworkPrefab, transform.position, Quaternion.identity);
+    }
 
     private void Update()
     {
@@ -28,9 +34,9 @@ public class FireworkController : MonoBehaviour
 
             //計測中
             _moveValue += (Mathf.Abs(Input.GetAxis("Mouse X")) + Mathf.Abs(Input.GetAxis("Mouse Y"))) * _adjustedValue;
-            _firework.gameObject.transform.localScale = Vector3.one * _moveValue;
+            _firework.transform.localScale = Vector3.one * _moveValue;
 
-            if (_firework.gameObject.transform.localScale.x >= _maxScaleValue)
+            if (_firework.transform.localScale.x >= _maxScaleValue)
             {
                 _isInflate = true;
             }
@@ -45,6 +51,6 @@ public class FireworkController : MonoBehaviour
 
     private void Explosion()
     {
-        _firework.ShowFirework((int)_firework.gameObject.transform.localScale.x);
+        _firework.GetComponent<Firework>().ShowFirework((int)_fireworkPrefab.transform.localScale.x);
     }
 }
