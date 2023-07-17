@@ -35,6 +35,7 @@ public class Firing
             .AppendInterval(2f)
             .AppendCallback(() =>
             {
+                _transform.position = _startPos;
                 Object.Destroy(go);
             });
     }
