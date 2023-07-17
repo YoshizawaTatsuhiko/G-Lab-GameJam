@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7975097366278253200}
   - component: {fileID: 4291205247220584704}
   - component: {fileID: 7987389820583900957}
-  - component: {fileID: 2997106577278362206}
   - component: {fileID: 7277674202535230623}
   - component: {fileID: 4726118980941278480}
   - component: {fileID: 336284738986327122}
@@ -105,21 +104,8 @@ MonoBehaviour:
   _firing:
     _explodePrefab: {fileID: 100002, guid: f7efb0d9df2264096af57128df85dddb, type: 3}
     _upOffset: {x: 0, y: 1, z: 0}
-  _lifeManager: {fileID: 2997106577278362206}
+  _lifeManager: {fileID: 0}
   _attackValue: 1
---- !u!114 &2997106577278362206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2092503019955006208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd905dd67c443d41b7aee0450f6c0ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _life: 1
 --- !u!114 &7277674202535230623
 MonoBehaviour:
   m_ObjectHideFlags: 0
