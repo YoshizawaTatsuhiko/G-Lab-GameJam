@@ -192,6 +192,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 018ef9557c90f474292f7915bc437e26, type: 3}
+--- !u!1001 &913317270
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4756027445620463889, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756027445620463889, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756027445620463889, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756027445620463889, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756027445620463889, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756027445620463889, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756027445620463889, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756027445620463889, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756027445620463889, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756027445620463889, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756027445620463889, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019414534380946855, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
+      propertyPath: _fireworkPrefab
+      value: 
+      objectReference: {fileID: 2092503019955006208, guid: a5ea99464f1d1864f80629603570dd44, type: 3}
+    - target: {fileID: 7829234262164193947, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
+      propertyPath: m_Name
+      value: LaunchPad
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 966ce6d2e966ef64c914ff1f7aa3f350, type: 3}
 --- !u!1001 &1084904948
 PrefabInstance:
   m_ObjectHideFlags: 0
