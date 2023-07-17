@@ -25,4 +25,11 @@ public class Firework : MonoBehaviour
             life.ReduceLife(_attackValue);
         }
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, GetComponent<CircleCollider2D>().radius);
+    }
+#endif
 }
