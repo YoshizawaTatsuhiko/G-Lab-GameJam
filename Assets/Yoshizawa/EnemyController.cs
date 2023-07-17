@@ -31,9 +31,9 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Firework firework))
+        if (collision.gameObject.TryGetComponent(out FireworkController launchPad))
         {
-            if(firework.gameObject.TryGetComponent(out LifeManager life))
+            if(launchPad.gameObject.TryGetComponent(out LifeManager life))
             {
                 life.ReduceLife(_damage);
             }
