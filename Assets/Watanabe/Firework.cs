@@ -6,8 +6,6 @@ public class Firework : MonoBehaviour
     [SerializeField]
     private Firing _firing = new();
     [SerializeField]
-    private LifeManager _lifeManager = default;
-    [SerializeField]
     private int _attackValue = 1;
 
     private SpriteRenderer _renderer = default;
@@ -21,7 +19,14 @@ public class Firework : MonoBehaviour
     public void ShowFirework(int scale)
     {
         _renderer.transform.localScale = Vector3.zero;
-        _renderer.transform.DOScale(Vector3.one * scale, 1.5f);
+        _renderer.transform
+            .DOScale(Vector3.one * scale, 1.5f)
+            .OnComplete(() =>
+            {
+                _renderer.transform.localScale = Vector3.one;
+            });
+
+        _firing.Explode();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

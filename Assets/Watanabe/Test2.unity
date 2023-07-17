@@ -757,6 +757,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Firework
       objectReference: {fileID: 0}
+    - target: {fileID: 2997106577278362206, guid: a5ea99464f1d1864f80629603570dd44, type: 3}
+      propertyPath: _life
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7975097366278253200, guid: a5ea99464f1d1864f80629603570dd44, type: 3}
       propertyPath: m_RootOrder
       value: 4
