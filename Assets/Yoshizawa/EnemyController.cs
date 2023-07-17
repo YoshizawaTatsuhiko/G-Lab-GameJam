@@ -10,7 +10,9 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private float _moveSpeed = 1f;
     [SerializeField] private int _damage = 1;
+    [SerializeField] private float _lifeTime = 10f;
     private Rigidbody2D _rb2d = null;
+    private float _timer = 0f;
 
     private void Start()
     {
@@ -21,6 +23,10 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         _rb2d.velocity = (Target - _rb2d.position).normalized * _moveSpeed;
+
+        _timer += Time.deltaTime;
+
+        if (_timer > _lifeTime) Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
