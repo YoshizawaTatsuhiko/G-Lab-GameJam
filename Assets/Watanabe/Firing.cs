@@ -7,17 +7,17 @@ public class Firing
     [SerializeField]
     private GameObject _explodePrefab = default;
     [SerializeField]
-    private AudioPlayer _audio = default;
-    [SerializeField]
     private Vector3 _upOffset = Vector3.up;
 
     private Transform _transform = default;
     private Vector3 _startPos = Vector3.zero;
+    private AudioPlayer _audio = default;
 
     public void Init(Transform transform)
     {
         _transform = transform;
         _startPos = transform.position;
+        _audio = transform.GetComponent<AudioPlayer>();
     }
 
     public void Explode()
