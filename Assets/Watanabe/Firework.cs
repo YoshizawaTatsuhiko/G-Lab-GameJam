@@ -29,6 +29,7 @@ public class Firework : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, GetComponent<CircleCollider2D>().radius);
     }
 #endif
