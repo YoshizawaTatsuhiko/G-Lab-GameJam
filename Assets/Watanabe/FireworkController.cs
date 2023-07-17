@@ -9,8 +9,6 @@ public class FireworkController : MonoBehaviour
     [SerializeField]
     private float _maxScaleValue = 5f;
     [SerializeField]
-    private int _attackValue = 1;
-    [SerializeField]
     private Firework _firework = default;
 
     private float _moveValue = 1f;
