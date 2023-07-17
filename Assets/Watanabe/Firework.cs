@@ -19,12 +19,19 @@ public class Firework : MonoBehaviour
     public void ShowFirework(int scale)
     {
         _renderer.transform.localScale = Vector3.zero;
-        _renderer.transform
-            .DOScale(Vector3.one * scale, 1.5f)
-            .OnComplete(() =>
+
+        var sequence = DOTween.Sequence();
+        sequence
+            .Append(_renderer.transform.DOScale(Vector3.one * scale, 1.5f))
+            .AppendCallback(() =>
             {
                 _renderer.enabled = false;
                 _renderer.transform.localScale = Vector3.one;
+            })
+            .AppendInterval(1f)
+            .OnComplete(() =>
+            {
+                _renderer.enabled = true;
             });
 
         _firing.Explode();
