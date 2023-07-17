@@ -52,6 +52,6 @@ public class FireworkController : MonoBehaviour
 
     private void Explosion()
     {
-        _firework.GetComponent<Firework>().ShowFirework((int)_fireworkPrefab.transform.localScale.x);
+        _firework.GetComponent<Firework>().ShowFirework();
     }
 }
