@@ -24,6 +24,11 @@ public class Firing
     {
         var sequence = DOTween.Sequence();
 
-        sequence.Append(_transform.DOMove(_startPos + _upOffset, 1f));
+        sequence
+            .Append(_transform.DOMove(_startPos + _upOffset, 1f))
+            .AppendCallback(() =>
+            {
+                var go = Object.Instantiate(_explodePrefab, _transform.position, Quaternion.identity);
+            });
     }
 }
