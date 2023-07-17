@@ -45,6 +45,7 @@ public class FireworkController : MonoBehaviour
         {
             //爆発
             Debug.Log("Bomb!!");
+            _isInflate = false;
             Explosion();
         }
     }
