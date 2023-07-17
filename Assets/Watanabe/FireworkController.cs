@@ -14,12 +14,14 @@ public class FireworkController : MonoBehaviour
     private GameObject _firework = default;
     private CircleCollider2D _circleCollider = default;
     private float _moveValue = 1f;
+    private float _radius = 1f;
     private bool _isInflate = false;
 
     private void Start()
     {
         _firework = Instantiate(_fireworkPrefab, transform.position, Quaternion.identity);
         _circleCollider = _firework.GetComponent<CircleCollider2D>();
+        _radius = _circleCollider.radius;
     }
 
     private void Update()
@@ -38,6 +40,7 @@ public class FireworkController : MonoBehaviour
             //計測中
             _moveValue += (Mathf.Abs(Input.GetAxis("Mouse X")) + Mathf.Abs(Input.GetAxis("Mouse Y"))) * _adjustedValue;
             _firework.transform.localScale = Vector3.one * _moveValue;
+            _circleCollider.radius += _moveValue * 0.001f;
 
             if (_firework.transform.localScale.x >= _maxScaleValue)
             {
@@ -51,11 +54,12 @@ public class FireworkController : MonoBehaviour
             _circleCollider.enabled = true;
             _isInflate = false;
             Explosion();
+            _circleCollider.radius = _radius;
         }
     }
 
     private void Explosion()
     {
-        _firework.GetComponent<Firework>().ShowFirework();
+        _firework.GetComponent<Firework>().ShowFirework(_circleCollider.radius);
     }
 }

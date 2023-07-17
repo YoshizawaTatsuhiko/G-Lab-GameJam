@@ -20,7 +20,7 @@ public class Firing
         _audio = transform.GetComponent<AudioPlayer>();
     }
 
-    public void Explode(GameObject firework)
+    public void Explode(GameObject firework, float radius)
     {
         GameObject go = default;
         var sequence = DOTween.Sequence();
@@ -40,6 +40,7 @@ public class Firing
             {
                 _audio.PlaySE(Random.Range(0, _audio.FireworkSE.Length));
                 go = Object.Instantiate(_explodePrefab, _transform.position, Quaternion.identity);
+                go.GetComponent<CircleCollider2D>().radius = radius;
             })
             .AppendInterval(2f)
             .AppendCallback(() =>
