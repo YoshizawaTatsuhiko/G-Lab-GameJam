@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4756027445620463889}
   - component: {fileID: 6019414534380946855}
+  - component: {fileID: 7759909495031652138}
   m_Layer: 0
   m_Name: LaunchPad
   m_TagString: Untagged
@@ -46,4 +47,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _adjustedValue: 0.01
   _maxScaleValue: 5
-  _fireworkPrefab: {fileID: 2092503019955006208, guid: a5ea99464f1d1864f80629603570dd44, type: 3}
+  _firework: {fileID: 7987389820583900957, guid: a5ea99464f1d1864f80629603570dd44, type: 3}
+--- !u!114 &7759909495031652138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7829234262164193947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bceeb2ef5a5254896f7137a1d34402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _items:
+  - {fileID: 8787931595947438731, guid: a902f5034f4178b4d8e057449d8048b0, type: 3}
+  - {fileID: 2725866017242147683, guid: 018ef9557c90f474292f7915bc437e26, type: 3}
+  - {fileID: 8857044341390782867, guid: e6dc28c0f16598543a03ad20cb5ac92b, type: 3}
+  - {fileID: 8664491188395446107, guid: 2964805ae3df7d64294e64c647e3b1c1, type: 3}
+  - {fileID: 7387905428793124803, guid: f0dc882dbf647e249a0980c34cab65e5, type: 3}
+  - {fileID: 4146205432739828804, guid: f8ab8ae6e4395a54298ec1e9e881df13, type: 3}
+  - {fileID: 6052483704956379446, guid: f04ef711f7806a844b33558475d49bb6, type: 3}
+  - {fileID: 1401859522524664185, guid: d7f7e0df57a9b4e4381bb7533ffe1b59, type: 3}
+  - {fileID: 7186405776602930419, guid: 6b06cddcac857f5438fd8b695d0e926e, type: 3}
+  - {fileID: 1801883281173928531, guid: 0b19314835bf87e41b56ba48888d74c9, type: 3}
+  - {fileID: 8787931595947438731, guid: 40b66ad0d7d1bc64cbb3ebcd28e58d29, type: 3}
+  - {fileID: 8787931595947438731, guid: 759775e4c6b2bfd408439dfcd52f5587, type: 3}
+  - {fileID: 2725866017242147683, guid: f846c396d9217ca42acf182c9b329d64, type: 3}
+  - {fileID: 2725866017242147683, guid: bcdc062ea82a4604d9d2cd1657608f03, type: 3}
+  - {fileID: 8857044341390782867, guid: c27deb270524e894795a0e68b1715f1b, type: 3}
+  - {fileID: 8857044341390782867, guid: 08a7790e852abd34ea6b0fb703c6cbd3, type: 3}
+  - {fileID: 8664491188395446107, guid: 312eaca7e51d98e428ab446f29a28d2a, type: 3}
+  _keepOutArea: 13
+  _generateArea: 1
+  _interval: 1
+  _reduceInterval: 8
+  _reduceIntervalValue: 0.1
