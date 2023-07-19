@@ -12,6 +12,7 @@ public class LifeManager : MonoBehaviour
     public void ReduceLife(int damage)
     {
         _life -= damage;
+        Debug.Log($"Current {gameObject.name}'s life is {_life}");
 
         if (_life <= 0) Destroy(gameObject);
     }
