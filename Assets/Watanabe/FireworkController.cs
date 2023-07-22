@@ -11,6 +11,7 @@ public class FireworkController : MonoBehaviour
     [SerializeField]
     private GameObject _fireworkPrefab = default;
 
+    private Firing _firing = default;
     private float _moveValue = 1f;
     private bool _isInflate = false;
     private SpriteRenderer _renderer = default;
@@ -24,12 +25,18 @@ public class FireworkController : MonoBehaviour
     private void SettingDefault()
     {
         _renderer.enabled = true;
-        transform.localScale = Vector3.one;
+        transform.localScale = Vector3.one * 0.2f;
         _moveValue = 1f;
     }
 
     private void Update()
     {
+        if (_firing && !_firing.PlayAnimation())
+        {
+            SettingDefault();
+            _firing = null;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             //計測開始
@@ -42,9 +49,9 @@ public class FireworkController : MonoBehaviour
 
             //計測中
             _moveValue += (Mathf.Abs(Input.GetAxis("Mouse X")) + Mathf.Abs(Input.GetAxis("Mouse Y"))) * _adjustedValue;
-            transform.localScale = Vector3.one * _moveValue;
+            transform.localScale = Vector3.one * _moveValue * 0.2f;
 
-            if (transform.localScale.x >= _maxScaleValue) _isInflate = true;
+            if (transform.localScale.x >= _maxScaleValue * 0.2f) _isInflate = true;
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -58,6 +65,7 @@ public class FireworkController : MonoBehaviour
     private void Firing()
     {
         _renderer.enabled = false;
-        Instantiate(_fireworkPrefab, transform.position, Quaternion.identity);
+        var go = Instantiate(_fireworkPrefab, transform.position, Quaternion.identity);
+        _firing = go.GetComponent<Firing>();
     }
 }
