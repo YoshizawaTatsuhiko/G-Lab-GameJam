@@ -14,6 +14,7 @@ public class FireworkController : MonoBehaviour
     private Firing _firing = default;
     private float _moveValue = 1f;
     private bool _isInflate = false;
+    private bool _isPlayAnim = false;
     private SpriteRenderer _renderer = default;
 
     private void Start()
@@ -24,6 +25,7 @@ public class FireworkController : MonoBehaviour
 
     private void SettingDefault()
     {
+        _isPlayAnim = false;
         _renderer.enabled = true;
         transform.localScale = Vector3.one * 0.2f;
         _moveValue = 1f;
@@ -39,6 +41,8 @@ public class FireworkController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (_isPlayAnim) return;
+
             //計測開始
             Debug.Log("計測開始");
             SettingDefault();
@@ -58,6 +62,7 @@ public class FireworkController : MonoBehaviour
             //発射
             Debug.Log("Bomb!!");
             _isInflate = false;
+            _isPlayAnim = true;
             Firing();
         }
     }
