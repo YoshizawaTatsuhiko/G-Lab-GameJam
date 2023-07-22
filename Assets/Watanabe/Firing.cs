@@ -1,56 +1,55 @@
 ﻿using UnityEngine;
-using DG.Tweening;
 
 [System.Serializable]
-public class Firing
+public class Firing : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _explodePrefab = default;
-    [SerializeField]
-    private Vector3 _upOffset = Vector3.up;
+    private int _attackValue = 1;
 
-    private Transform _transform = default;
-    private Vector3 _startPos = Vector3.zero;
     private AudioPlayer _audio = default;
 
-    public void Init(Transform transform)
+    private void Start()
     {
-        _transform = transform;
-        _startPos = transform.position;
-        _audio = transform.GetComponent<AudioPlayer>();
+        _audio = GetComponent<AudioPlayer>();
+        _audio.PlaySE(Random.Range(0, _audio.FireworkSE.Length));
     }
 
-    public void Explode(GameObject firework, float radius)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject go = default;
-        var sequence = DOTween.Sequence();
+        if (collision.gameObject.TryGetComponent(out EnemyController enemy))
+        {
+            enemy.gameObject.TryGetComponent(out LifeManager life);
+            var collider = GetComponent<CircleCollider2D>();
 
-        sequence
-            .AppendCallback(() =>
+            if (collider.radius <= 1)
             {
-                firework.transform.localScale = Vector3.one * 0.1f;
-            })
-            .Append(_transform.DOMove(_startPos + _upOffset, 1f))
-            .Join(firework.transform.DOMove(_startPos + _upOffset, 1f))
-            .AppendCallback(() =>
+                _attackValue = 2;
+            }
+            else if (collider.radius <= 2)
             {
-                firework.SetActive(false);
-            })
-            .AppendCallback(() =>
+                _attackValue = 4;
+            }
+            else if (collider.radius <= 3)
             {
-                _audio.PlaySE(Random.Range(0, _audio.FireworkSE.Length));
-                go = Object.Instantiate(_explodePrefab, _transform.position, Quaternion.identity);
-                go.GetComponent<CircleCollider2D>().radius = radius;
-            })
-            .AppendInterval(2f)
-            .AppendCallback(() =>
+                _attackValue = 5;
+            }
+            else if (collider.radius <= 4)
             {
-                firework.SetActive(true);
-                firework.transform.localScale = Vector3.one;
-                firework.transform.position = _startPos;
-
-                _transform.position = _startPos;
-                Object.Destroy(go);
-            });
+                _attackValue = 6;
+            }
+            else
+            {
+                _attackValue = 10;
+            }
+            life.ReduceLife(_attackValue);
+        }
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, GetComponent<CircleCollider2D>().radius);
+    }
+#endif
 }

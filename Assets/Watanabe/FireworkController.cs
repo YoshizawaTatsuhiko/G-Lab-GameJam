@@ -11,17 +11,21 @@ public class FireworkController : MonoBehaviour
     [SerializeField]
     private GameObject _fireworkPrefab = default;
 
-    private GameObject _firework = default;
-    private CircleCollider2D _circleCollider = default;
     private float _moveValue = 1f;
-    private float _startRadius = 1f;
     private bool _isInflate = false;
+    private SpriteRenderer _renderer = default;
 
     private void Start()
     {
-        _firework = Instantiate(_fireworkPrefab, transform.position, Quaternion.identity);
-        _circleCollider = _firework.GetComponent<CircleCollider2D>();
-        _startRadius = _circleCollider.radius;
+        _renderer = GetComponent<SpriteRenderer>();
+        SettingDefault();
+    }
+
+    private void SettingDefault()
+    {
+        _renderer.enabled = true;
+        transform.localScale = Vector3.one;
+        _moveValue = 1f;
     }
 
     private void Update()
@@ -30,8 +34,7 @@ public class FireworkController : MonoBehaviour
         {
             //計測開始
             Debug.Log("計測開始");
-            _circleCollider.enabled = false;
-            _moveValue = 1f;
+            SettingDefault();
         }
         else if (Input.GetMouseButton(0))
         {
@@ -39,27 +42,22 @@ public class FireworkController : MonoBehaviour
 
             //計測中
             _moveValue += (Mathf.Abs(Input.GetAxis("Mouse X")) + Mathf.Abs(Input.GetAxis("Mouse Y"))) * _adjustedValue;
-            _firework.transform.localScale = Vector3.one * _moveValue;
-            _circleCollider.radius += _moveValue * 0.001f;
+            transform.localScale = Vector3.one * _moveValue;
 
-            if (_firework.transform.localScale.x >= _maxScaleValue)
-            {
-                _isInflate = true;
-            }
+            if (transform.localScale.x >= _maxScaleValue) _isInflate = true;
         }
         else if (Input.GetMouseButtonUp(0))
         {
             //爆発
             Debug.Log("Bomb!!");
-            _circleCollider.enabled = true;
             _isInflate = false;
-            Explosion();
-            _circleCollider.radius = _startRadius;
+            Firing();
         }
     }
 
-    private void Explosion()
+    private void Firing()
     {
-        _firework.GetComponent<Firework>().ShowFirework(_circleCollider.radius);
+        _renderer.enabled = false;
+        Instantiate(_fireworkPrefab, transform.position, Quaternion.identity);
     }
 }
