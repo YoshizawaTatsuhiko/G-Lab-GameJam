@@ -2,9 +2,7 @@
 
 public class Firing : MonoBehaviour
 {
-    [SerializeField]
     private int _attackValue = 1;
-
     private Animator _anim = default;
 
     private void Awake()
@@ -37,26 +35,12 @@ public class Firing : MonoBehaviour
             enemy.gameObject.TryGetComponent(out LifeManager life);
             var collider = GetComponent<CircleCollider2D>();
 
-            if (collider.radius <= 1)
-            {
-                _attackValue = 2;
-            }
-            else if (collider.radius <= 2)
-            {
-                _attackValue = 4;
-            }
-            else if (collider.radius <= 3)
-            {
-                _attackValue = 5;
-            }
-            else if (collider.radius <= 4)
-            {
-                _attackValue = 6;
-            }
-            else
-            {
-                _attackValue = 10;
-            }
+            if (collider.radius <= 0.5f)      _attackValue = 2;
+            else if (collider.radius <= 1.5f) _attackValue = 4;
+            else if (collider.radius <= 2.5f) _attackValue = 5;
+            else if (collider.radius <= 3.5f) _attackValue = 6;
+            else                              _attackValue = 10;
+
             life.ReduceLife(_attackValue);
         }
     }
