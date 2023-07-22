@@ -5,6 +5,8 @@ using UnityEngine;
 // 日本語対応
 public class Generator : MonoBehaviour
 {
+    [Header("妖怪たちが攻撃する対象")]
+    [SerializeField] private Vector2 _target = Vector2.zero;
     [Header("生成するオブジェクト")]
     [SerializeField] private EnemyController[] _items = null;
     [Header("生成禁止範囲")]
