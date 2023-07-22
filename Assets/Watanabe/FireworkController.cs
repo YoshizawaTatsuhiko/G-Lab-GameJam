@@ -25,7 +25,6 @@ public class FireworkController : MonoBehaviour
 
     private void SettingDefault()
     {
-        _isPlayAnim = false;
         _renderer.enabled = true;
         transform.localScale = Vector3.one * 0.2f;
         _moveValue = 1f;
@@ -36,6 +35,7 @@ public class FireworkController : MonoBehaviour
         if (_firing && !_firing.PlayAnimation())
         {
             SettingDefault();
+            _isPlayAnim = false;
             _firing = null;
         }
 
@@ -63,14 +63,14 @@ public class FireworkController : MonoBehaviour
             Debug.Log("Bomb!!");
             _isInflate = false;
             _isPlayAnim = true;
-            Firing();
+            Firing(Input.mousePosition.x);
         }
     }
 
-    private void Firing()
+    private void Firing(float mouseX)
     {
         _renderer.enabled = false;
-        var go = Instantiate(_fireworkPrefab, transform.position, Quaternion.identity);
+        var go = Instantiate(_fireworkPrefab, new Vector3(mouseX, transform.position.y), Quaternion.identity);
         _firing = go.GetComponent<Firing>();
     }
 }
