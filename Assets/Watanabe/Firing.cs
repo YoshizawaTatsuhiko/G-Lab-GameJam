@@ -6,17 +6,28 @@ public class Firing : MonoBehaviour
     private int _attackValue = 1;
 
     private Animator _anim = default;
-    private AudioPlayer _audio = default;
 
     private void Awake()
     {
-        TryGetComponent(out Animator _anim);
-        TryGetComponent(out AudioPlayer _audio);
+        _anim = GetComponent<Animator>();
     }
 
-    private void Start()
+    #region called by AnimationEvent
+    public void SEPlay()
     {
-        _audio.PlaySE(0);
+        TryGetComponent(out AudioPlayer audio);
+        audio.PlaySE(Random.Range(0, audio.FireworkSE.Length));
+    }
+
+    public void VanishFirework()
+    {
+        Destroy(gameObject, 1f);
+    }
+    #endregion
+
+    public bool PlayAnimation()
+    {
+        return _anim.GetCurrentAnimatorStateInfo(0).IsName("Bomb");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
