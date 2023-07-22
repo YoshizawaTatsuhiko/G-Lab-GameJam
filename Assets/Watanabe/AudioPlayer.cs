@@ -3,13 +3,13 @@
 public class AudioPlayer : MonoBehaviour
 {
     [SerializeField]
-    private AudioClip[] _fireworkSE = default;
+    private AudioClip[] _fireworkSE = new AudioClip[4];
 
     private AudioSource _seSource = default;
 
     public AudioClip[] FireworkSE => _fireworkSE;
 
-    private void Start()
+    private void Awake()
     {
         _seSource = GetComponent<AudioSource>();
         _seSource.loop = false;

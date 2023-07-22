@@ -48,7 +48,7 @@ public class FireworkController : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            //爆発
+            //発射
             Debug.Log("Bomb!!");
             _isInflate = false;
             Firing();

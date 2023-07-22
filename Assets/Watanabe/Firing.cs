@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
 public class Firing : MonoBehaviour
 {
     [SerializeField]
     private int _attackValue = 1;
 
+    private Animator _anim = default;
     private AudioPlayer _audio = default;
+
+    private void Awake()
+    {
+        TryGetComponent(out Animator _anim);
+        TryGetComponent(out AudioPlayer _audio);
+    }
 
     private void Start()
     {
-        _audio = GetComponent<AudioPlayer>();
-        _audio.PlaySE(Random.Range(0, _audio.FireworkSE.Length));
+        _audio.PlaySE(0);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
