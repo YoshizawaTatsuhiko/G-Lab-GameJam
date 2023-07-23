@@ -6,7 +6,7 @@ using UnityEngine;
 public class Generator : MonoBehaviour
 {
     [Header("妖怪たちが攻撃する対象")]
-    [SerializeField] private Vector2 _target = Vector2.zero;
+    [SerializeField] private Transform _target = null;
     [Header("生成するオブジェクト")]
     [SerializeField] private EnemyController[] _items = null;
     [Header("生成禁止範囲")]
@@ -24,7 +24,7 @@ public class Generator : MonoBehaviour
 
     private void Update()
     {
-        Generate(Time.deltaTime);
+        if(!GameManager.Instance.IsPause) Generate(Time.deltaTime);
     }
 
     public void Generate(float deltaTime)
@@ -41,7 +41,7 @@ public class Generator : MonoBehaviour
             Vector2 myPos = transform.position;
             int n = Random.Range(0, _items.Length);
             var enemy = Instantiate(_items[n], myPos + vec, Quaternion.identity, transform);
-            enemy.Target = transform.position;
+            if(_target) enemy.Target = _target.position;
             _intervalTimer = 0f;
         }
 
